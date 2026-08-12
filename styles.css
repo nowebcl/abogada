@@ -1076,7 +1076,7 @@ ul {
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     text-align: center;
   }
 
@@ -1113,6 +1113,91 @@ ul {
 
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  /* Re-order hero items smoothly using display: contents */
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .hero-content {
+    display: contents;
+  }
+
+  .location-tag {
+    order: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    order: 2;
+    font-size: clamp(2rem, 6.5vw, 2.5rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-description {
+    order: 3;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Compact & Orderly Mobile Hero Image */
+  .hero-image-wrapper {
+    order: 4;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  .arch-frame {
+    width: 220px;
+    max-width: 220px;
+    height: 270px;
+    border-radius: 120px 120px 0 0;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 12px 28px rgba(44, 35, 28, 0.12);
+  }
+
+  .hero-cta-group {
+    order: 5;
+    flex-direction: column;
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-secondary-cta {
+    order: 6;
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-secondary-cta .btn {
+    width: 100%;
+  }
+
+  .trust-badges-card {
+    order: 7;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -1181,8 +1266,5 @@ ul {
   .footer-grid {
     grid-template-columns: 1fr;
   }
-
-  .arch-frame {
-    height: 400px;
-  }
 }
+
