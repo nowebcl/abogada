@@ -1117,17 +1117,30 @@ ul {
 }
 
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 2.5rem 0 3.5rem;
+  .site-header {
+    height: 60px;
   }
 
-  /* Re-order hero items smoothly using display: contents */
+  .header-container {
+    height: 60px;
+  }
+
+  .hero-section {
+    padding: 0.75rem 0 1.25rem;
+    min-height: calc(100dvh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Re-order hero items cleanly to fit 100% inside mobile viewport canvas */
   .hero-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.25rem;
+    gap: 0.4rem;
+    width: 100%;
   }
 
   .hero-content {
@@ -1136,70 +1149,114 @@ ul {
 
   .location-tag {
     order: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .tag-line {
+    width: 16px;
+  }
+
+  .tag-text {
+    font-size: 0.625rem;
+    letter-spacing: 0.12em;
   }
 
   .hero-title {
     order: 2;
-    font-size: clamp(2rem, 6.5vw, 2.5rem);
-    margin-bottom: 0.75rem;
+    font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+    line-height: 1.18;
+    margin-bottom: 0.25rem;
   }
 
-  .hero-description {
-    order: 3;
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-    padding: 0 0.5rem;
-  }
-
-  /* Compact & Orderly Mobile Hero Image */
+  /* Compact & Visible Mobile Hero Image Frame */
   .hero-image-wrapper {
-    order: 4;
+    order: 3;
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 0.75rem 0 1.25rem;
+    margin: 0.25rem 0;
   }
 
   .arch-frame {
-    width: 220px;
-    max-width: 220px;
-    height: 270px;
-    border-radius: 120px 120px 0 0;
-    border: 3px solid #FFFFFF;
-    box-shadow: 0 12px 28px rgba(44, 35, 28, 0.12);
+    width: 120px;
+    max-width: 120px;
+    height: 145px;
+    border-radius: 65px 65px 0 0;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 8px 20px rgba(44, 35, 28, 0.12);
+  }
+
+  .hero-description {
+    order: 4;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    margin-bottom: 0.4rem;
+    padding: 0 0.5rem;
+    max-width: 340px;
   }
 
   .hero-cta-group {
     order: 5;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
-    max-width: 340px;
-    margin-bottom: 0.75rem;
-    gap: 0.75rem;
+    max-width: 360px;
+    gap: 0.4rem;
+    margin-bottom: 0.35rem;
   }
 
   .hero-cta-group .btn {
-    width: 100%;
+    flex: 1;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.725rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .cta-note {
+    display: none;
   }
 
   .hero-secondary-cta {
     order: 6;
     width: 100%;
-    max-width: 340px;
-    margin-bottom: 1.75rem;
+    max-width: 360px;
+    margin-bottom: 0.5rem;
   }
 
   .hero-secondary-cta .btn {
     width: 100%;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.725rem;
   }
 
   .trust-badges-card {
     order: 7;
     width: 100%;
-    max-width: 100%;
+    max-width: 360px;
+    padding: 0.5rem 0.6rem;
+    gap: 0.2rem;
+    justify-content: space-around;
+  }
+
+  .badge-item {
+    gap: 0.3rem;
+  }
+
+  .badge-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .badge-text {
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+
+  .badge-divider {
+    height: 16px;
   }
 }
+
 
 @media (max-width: 640px) {
   .desktop-nav {
