@@ -46,9 +46,11 @@
         
         <!-- Mobile Menu Toggle Button -->
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú" aria-expanded="false">
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
-          <span class="hamburger-bar"></span>
+          <div class="hamburger-icon">
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+            <span class="hamburger-bar"></span>
+          </div>
         </button>
       </div>
     </div>
@@ -86,10 +88,18 @@
             Acompañamiento legal <span class="serif-italic">cercano</span>, con la claridad que tu familia necesita
           </h1>
 
-          <!-- Mobile Hero Image (Hidden on Desktop) -->
+          <!-- Mobile Hero Image with Floating Description Card (Hidden on Desktop) -->
           <div class="hero-image-wrapper mobile-only">
-            <div class="arch-frame">
-              <img src="assets/images/sofia_martinez.jpg" alt="Sofía Martínez - Abogada de Familia" class="arch-image" loading="eager">
+            <div class="hero-arch-container-mobile">
+              <!-- Floating Glass Description Card -->
+              <div class="floating-desc-card">
+                <p>Abogada especialista en derecho de familia. Te acompaño en procesos de divorcio, cuidado personal, pensión de alimentos y otras materias familiares, con trato humano y respaldo profesional.</p>
+              </div>
+
+              <!-- Centered Arch Frame -->
+              <div class="arch-frame">
+                <img src="assets/images/sofia_martinez.jpg" alt="Sofía Martínez - Abogada de Familia" class="arch-image" loading="eager">
+              </div>
             </div>
           </div>
 
