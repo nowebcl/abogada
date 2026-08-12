@@ -1096,6 +1096,23 @@ ul {
 /* --------------------------------------------------------------------------
    12. RESPONSIVE BREAKPOINTS
    -------------------------------------------------------------------------- */
+/* Display Utilities for PC / Mobile */
+.mobile-only {
+  display: none !important;
+}
+.desktop-only {
+  display: flex !important;
+}
+
+@media (max-width: 992px) {
+  .mobile-only {
+    display: flex !important;
+  }
+  .desktop-only {
+    display: none !important;
+  }
+}
+
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1156,7 +1173,6 @@ ul {
     justify-content: center;
   }
 
-  /* Re-order hero items cleanly to fit 100% inside mobile viewport canvas */
   .hero-grid {
     display: flex;
     flex-direction: column;
@@ -1166,12 +1182,7 @@ ul {
     width: 100%;
   }
 
-  .hero-content {
-    display: contents;
-  }
-
   .location-tag {
-    order: 1;
     margin-bottom: 0.15rem;
   }
 
@@ -1185,41 +1196,39 @@ ul {
   }
 
   .hero-title {
-    order: 2;
     font-size: clamp(1.4rem, 5.5vw, 1.8rem);
     line-height: 1.18;
     margin-bottom: 0.25rem;
   }
 
-  /* Compact & Visible Mobile Hero Image Frame */
-  .hero-image-wrapper {
-    order: 3;
-    display: flex;
+  /* Mobile Hero Arch Image: Larger & Prominent */
+  .mobile-only.hero-image-wrapper {
+    display: flex !important;
     justify-content: center;
     width: 100%;
-    margin: 0.25rem 0;
+    margin: 0.35rem 0 0.5rem;
   }
 
-  .arch-frame {
-    width: 120px;
-    max-width: 120px;
-    height: 145px;
-    border-radius: 65px 65px 0 0;
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 8px 20px rgba(44, 35, 28, 0.12);
+  .mobile-only .arch-frame {
+    width: 200px;
+    max-width: 200px;
+    height: 250px;
+    border-radius: 100px 100px 0 0;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 10px 25px rgba(44, 35, 28, 0.12);
   }
 
+  /* Description: Smaller & Compact */
   .hero-description {
-    order: 4;
-    font-size: 0.8125rem;
-    line-height: 1.35;
+    font-size: 0.775rem;
+    line-height: 1.32;
     margin-bottom: 0.4rem;
     padding: 0 0.5rem;
-    max-width: 340px;
+    max-width: 330px;
+    color: var(--text-secondary);
   }
 
   .hero-cta-group {
-    order: 5;
     flex-direction: row;
     width: 100%;
     max-width: 360px;
@@ -1240,7 +1249,6 @@ ul {
   }
 
   .hero-secondary-cta {
-    order: 6;
     width: 100%;
     max-width: 360px;
     margin-bottom: 0.5rem;
@@ -1252,33 +1260,53 @@ ul {
     font-size: 0.725rem;
   }
 
+  /* Trust Badges Card: Horizontal Row with Dividers */
   .trust-badges-card {
-    order: 7;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     max-width: 360px;
-    padding: 0.5rem 0.6rem;
-    gap: 0.2rem;
-    justify-content: space-around;
+    padding: 0.55rem 0.65rem;
+    gap: 0.25rem;
+    background-color: var(--bg-badge);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin: 0 auto;
   }
 
   .badge-item {
-    gap: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1;
+    justify-content: center;
+    text-align: left;
   }
 
   .badge-icon svg {
     width: 16px;
     height: 16px;
+    color: var(--color-gold);
   }
 
   .badge-text {
-    font-size: 0.65rem;
-    line-height: 1.1;
+    font-size: 0.625rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--text-primary);
   }
 
   .badge-divider {
-    height: 16px;
+    display: block !important;
+    width: 1px;
+    height: 20px;
+    background-color: var(--border-medium);
+    flex-shrink: 0;
   }
 }
+
 
 
 @media (max-width: 640px) {
