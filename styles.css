@@ -354,10 +354,44 @@ ul {
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 440px;
-  gap: 4rem;
-  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 993px) {
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 0 4rem;
+    align-items: center;
+  }
+
+  .location-tag,
+  .hero-title,
+  .hero-description,
+  .hero-cta-group,
+  .hero-secondary-cta,
+  .trust-badges-card {
+    grid-column: 1;
+  }
+
+  .hero-image-wrapper {
+    grid-column: 2;
+    grid-row: 1 / span 10;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .arch-frame {
+    width: 100%;
+    max-width: 420px;
+    height: 520px;
+    border-radius: var(--radius-arch);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(44, 35, 28, 0.12);
+    border: 4px solid #FFFFFF;
+    background-color: #E8DEC9;
+  }
 }
 
 .location-tag {
@@ -468,22 +502,11 @@ ul {
   background-color: var(--border-medium);
 }
 
-/* Arch Image Styling */
+/* Arch Image Styling Base */
 .hero-image-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
-}
-
-.arch-frame {
-  width: 100%;
-  max-width: 420px;
-  height: 520px;
-  border-radius: var(--radius-arch);
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(44, 35, 28, 0.12);
-  border: 4px solid #FFFFFF;
-  background-color: #E8DEC9;
 }
 
 .arch-image {
