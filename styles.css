@@ -1028,6 +1028,24 @@ ul {
   color: #83756A;
 }
 
+.developer-credits {
+  font-size: 0.75rem;
+  color: #9C8F84;
+  margin-top: 0.35rem;
+}
+
+.developer-link {
+  color: var(--color-gold-light);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.developer-link:hover {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
 /* --------------------------------------------------------------------------
    11. FLOATING WHATSAPP BUTTON & MODAL
    -------------------------------------------------------------------------- */
