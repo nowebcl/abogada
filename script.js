@@ -175,14 +175,30 @@ ${mensaje}`;
     let autoSlideInterval = null;
 
     function getVisibleCount() {
-      if (window.innerWidth <= 640) return 1;
-      if (window.innerWidth <= 992) return 2;
+      if (window.innerWidth <= 680) return 1;
+      if (window.innerWidth <= 1024) return 2;
       return 3;
     }
 
     function getMaxIndex() {
       const visible = getVisibleCount();
       return Math.max(0, totalCards - visible);
+    }
+
+    function updateLayout() {
+      const visible = getVisibleCount();
+      const gap = 24;
+      const viewportWidth = viewport.clientWidth || viewport.offsetWidth;
+      if (viewportWidth > 0) {
+        const cardWidth = Math.floor((viewportWidth - (gap * (visible - 1))) / visible);
+        cards.forEach(card => {
+          card.style.width = `${cardWidth}px`;
+          card.style.minWidth = `${cardWidth}px`;
+          card.style.maxWidth = `${cardWidth}px`;
+        });
+      }
+      updateDots();
+      updateSlider();
     }
 
     function updateDots() {
@@ -207,10 +223,10 @@ ${mensaje}`;
       if (currentIndex > maxIdx) currentIndex = 0;
       if (currentIndex < 0) currentIndex = maxIdx;
 
-      const card = cards[0];
-      if (!card) return;
+      const visible = getVisibleCount();
       const gap = 24;
-      const cardWidth = card.offsetWidth;
+      const viewportWidth = viewport.clientWidth || viewport.offsetWidth;
+      const cardWidth = Math.floor((viewportWidth - (gap * (visible - 1))) / visible);
       const moveAmount = currentIndex * (cardWidth + gap);
 
       track.style.transform = `translateX(-${moveAmount}px)`;
@@ -244,14 +260,16 @@ ${mensaje}`;
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         nextSlide();
         restartAutoSlide();
       });
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         prevSlide();
         restartAutoSlide();
       });
@@ -272,7 +290,7 @@ ${mensaje}`;
       isDragging = false;
       const endX = e.changedTouches[0].clientX;
       const diffX = startX - endX;
-      if (Math.abs(diffX) > 40) {
+      if (Math.abs(diffX) > 35) {
         if (diffX > 0) {
           nextSlide();
         } else {
@@ -282,26 +300,22 @@ ${mensaje}`;
       restartAutoSlide();
     }, { passive: true });
 
-    // Auto Play Loop
     function startAutoSlide() {
-      autoSlideInterval = setInterval(nextSlide, 4500);
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(nextSlide, 4000);
     }
 
     function restartAutoSlide() {
-      clearInterval(autoSlideInterval);
       startAutoSlide();
     }
 
     viewport.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
     viewport.addEventListener('mouseleave', startAutoSlide);
 
-    window.addEventListener('resize', () => {
-      updateDots();
-      updateSlider();
-    });
+    window.addEventListener('resize', updateLayout);
 
-    updateDots();
-    updateSlider();
+    // Initial load
+    setTimeout(updateLayout, 100);
     startAutoSlide();
   }
 });
