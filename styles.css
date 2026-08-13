@@ -235,25 +235,34 @@ ul {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  height: 52px;
+  max-height: 52px;
+  overflow: hidden;
 }
 
+.brand-logo img,
 .brand-logo-img {
-  height: 42px !important;
-  max-height: 42px !important;
-  width: 42px !important;
-  max-width: 42px !important;
-  object-fit: contain;
-  flex-shrink: 0;
+  height: 48px !important;
+  max-height: 48px !important;
+  width: auto !important;
+  max-width: 220px !important;
+  object-fit: contain !important;
+  display: block !important;
 }
 
+.footer-brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-brand-logo img,
 .footer-brand-logo-img {
-  height: 46px !important;
-  max-height: 46px !important;
-  width: 46px !important;
-  max-width: 46px !important;
-  object-fit: contain;
-  flex-shrink: 0;
+  height: 56px !important;
+  max-height: 56px !important;
+  width: auto !important;
+  max-width: 240px !important;
+  object-fit: contain !important;
+  display: block !important;
 }
 
 .brand-monogram {
