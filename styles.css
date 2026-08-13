@@ -1756,6 +1756,7 @@ ul {
 }
 
 .google-badge-icon {
+  margin-left: auto;
   opacity: 0.85;
 }
 
