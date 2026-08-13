@@ -158,4 +158,150 @@ ${mensaje}`;
   }, observerOptions);
 
   revealElements.forEach(el => revealObserver.observe(el));
+
+  // --------------------------------------------------------------------------
+  // TESTIMONIALS INTERACTIVE CAROUSEL SLIDER
+  // --------------------------------------------------------------------------
+  const track = document.getElementById('testimonials-track');
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
+  const dotsContainer = document.getElementById('testimonial-dots');
+  const viewport = document.getElementById('testimonials-viewport');
+
+  if (track && viewport) {
+    const cards = track.querySelectorAll('.testimonial-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    let autoSlideInterval = null;
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 992) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      const visible = getVisibleCount();
+      return Math.max(0, totalCards - visible);
+    }
+
+    function updateDots() {
+      if (!dotsContainer) return;
+      dotsContainer.innerHTML = '';
+      const maxIdx = getMaxIndex();
+      for (let i = 0; i <= maxIdx; i++) {
+        const dot = document.createElement('button');
+        dot.className = `slider-dot ${i === currentIndex ? 'is-active' : ''}`;
+        dot.setAttribute('aria-label', `Ir a testimonio ${i + 1}`);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateSlider();
+          restartAutoSlide();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function updateSlider() {
+      const maxIdx = getMaxIndex();
+      if (currentIndex > maxIdx) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = maxIdx;
+
+      const card = cards[0];
+      if (!card) return;
+      const gap = 24;
+      const cardWidth = card.offsetWidth;
+      const moveAmount = currentIndex * (cardWidth + gap);
+
+      track.style.transform = `translateX(-${moveAmount}px)`;
+
+      if (dotsContainer) {
+        const dots = dotsContainer.querySelectorAll('.slider-dot');
+        dots.forEach((dot, idx) => {
+          dot.classList.toggle('is-active', idx === currentIndex);
+        });
+      }
+    }
+
+    function nextSlide() {
+      const maxIdx = getMaxIndex();
+      if (currentIndex >= maxIdx) {
+        currentIndex = 0;
+      } else {
+        currentIndex++;
+      }
+      updateSlider();
+    }
+
+    function prevSlide() {
+      const maxIdx = getMaxIndex();
+      if (currentIndex <= 0) {
+        currentIndex = maxIdx;
+      } else {
+        currentIndex--;
+      }
+      updateSlider();
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        restartAutoSlide();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        restartAutoSlide();
+      });
+    }
+
+    // Touch Swipe Support
+    let startX = 0;
+    let isDragging = false;
+
+    viewport.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      clearInterval(autoSlideInterval);
+    }, { passive: true });
+
+    viewport.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      restartAutoSlide();
+    }, { passive: true });
+
+    // Auto Play Loop
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 4500);
+    }
+
+    function restartAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    viewport.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    viewport.addEventListener('mouseleave', startAutoSlide);
+
+    window.addEventListener('resize', () => {
+      updateDots();
+      updateSlider();
+    });
+
+    updateDots();
+    updateSlider();
+    startAutoSlide();
+  }
 });
