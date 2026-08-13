@@ -131,4 +131,31 @@ ${mensaje}`;
       header.style.boxShadow = 'none';
     }
   });
+
+  // 5. Scroll-Driven Reveal Observer
+  const revealElements = document.querySelectorAll(
+    '.section-title, .section-subtitle, .practice-card, .about-grid, .contact-card, .contact-form-card, .trust-badges-card'
+  );
+
+  revealElements.forEach((el, index) => {
+    el.classList.add('reveal-on-scroll');
+    const delayClass = `delay-${(index % 4) + 1}`;
+    el.classList.add(delayClass);
+  });
+
+  const observerOptions = {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  revealElements.forEach(el => revealObserver.observe(el));
 });
