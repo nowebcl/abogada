@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBody.textContent = data.description;
 
         const encodedTitle = encodeURIComponent(data.title);
-        modalWhatsappLink.href = `https://wa.me/56994875885?text=Hola%20Sof%C3%ADa,%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%3A%20${encodedTitle}`;
+        modalWhatsappLink.href = `https://wa.me/56994979895?text=Hola%20Sof%C3%ADa,%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20sobre%3A%20${encodedTitle}`;
 
         modal.classList.add('active');
         modal.setAttribute('aria-hidden', 'false');
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 *Detalles de mi caso:*
 ${mensaje}`;
 
-      const waUrl = `https://wa.me/56994875885?text=${encodeURIComponent(waText)}`;
+      const waUrl = `https://wa.me/56994979895?text=${encodeURIComponent(waText)}`;
       window.open(waUrl, '_blank');
     });
   }
